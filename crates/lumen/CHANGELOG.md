@@ -1,0 +1,248 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [0.2.0](https://github.com/suveshmoza/browser/compare/v0.1.0...v0.2.0) - 2026-07-01
+
+### Added
+
+- *(lumen)* Temporal — full ISO-8601 parser, field/range validation, calendar+overflow options, Duration round/total
+- *(lumen)* async generators via coroutines with a Yield/Await suspend distinction
+- *(lumen)* async functions as coroutines — real await suspension via the microtask queue
+- *(lumen)* real generator coroutines (thread-per-generator) replacing eager evaluation
+- *(lumen)* Error/AggregateError support the { cause } options bag (InstallErrorCause)
+- *(lumen)* Promise.all/race/allSettled/any require a constructor this (TypeError otherwise)
+- *(lumen)* Date.parse handles RFC/toUTCString formats + Annex B getYear/setYear
+- *(lumen)* enforce Proxy has + isExtensible invariants
+- *(lumen)* enforce Proxy get/set invariants for non-configurable target properties
+- *(lumen)* regex inline modifiers (?ims-ims:...) via a backtrack-safe matcher flag stack
+- *(lumen)* Array exotic [[DefineOwnProperty]] (length validation/truncation, index grows length)
+- *(lumen)* $262.createRealm — fresh realm with cross-realm-capable evalScript
+- *(lumen)* ShadowRealm wrapped functions (callable marshaling across the realm boundary)
+- *(lumen)* ShadowRealm — isolated sub-realm with primitive-only evaluate()
+- *(lumen)* TypedArray length/byteLength/byteOffset/buffer as brand-checking prototype accessors
+- *(lumen)* validate regex capture-group names (IdentifierName, \u escapes allowed)
+- *(lumen)* catch import() under member access in a 'new' callee chain
+- *(lumen)* block-level generator/async function declarations are lexical (redeclaration errors)
+- *(lumen)* 'new import(...)' is a SyntaxError
+- *(lumen)* 'use strict' directive illegal with a non-simple parameter list
+- *(lumen)* referenced private names must be declared in an enclosing class
+- *(lumen)* an identifier's first code point must be ID_Start, even escaped
+- *(lumen)* reserved word can't be an object/destructuring shorthand ({break} → SyntaxError)
+- *(lumen)* var hoisting conflicts with a lexical in any enclosing block up to the function boundary
+- *(lumen)* validate numeric separator placement (only between two digits)
+- *(lumen)* a lexical in a catch block can't redeclare the catch parameter (var still can)
+- *(lumen)* regex \k<name> named backreferences + undefined-name SyntaxError
+- *(lumen)* escaped reserved words lex as keywords (var \u0062reak → SyntaxError)
+- *(lumen)* exact ID_Start/ID_Continue identifier validation via the UCD tables
+- *(lumen)* \p{} — add DerivedBinaryProperties + normalization binary props + Unknown script
+- *(lumen)* validate regex literals at parse time (invalid pattern → early SyntaxError)
+- *(lumen)* RegExp \p{} Unicode property escapes (UCD 17.0.0)
+- *(lumen)* import.meta outside a module is a SyntaxError
+- *(lumen)* invalid destructuring-assignment targets are SyntaxErrors (e.g. ({a:1})=x)
+- *(lumen)* class early errors — one constructor, no #constructor, unique private names
+- *(lumen)* 'delete obj.#private' is a SyntaxError (private fields can't be deleted)
+- *(lumen)* duplicate binding in a destructuring catch parameter is a SyntaxError
+- *(lumen)* new.target outside a function is a SyntaxError (+ validate '.target')
+- *(lumen)* ++/-- operand must be a simple assignment target (reject 0++)
+- *(lumen)* await/yield label early errors + duplicate arrow-parameter early error
+- *(lumen)* module loader for dynamic import() in scripts/async tests + import_base
+- *(lumen)* Promise combinators invoke the user-visible .then (spec-correct subscription)
+- *(lumen)* await/yield reserved as bindings in async/generator bodies
+- *(lumen)* 'for await' outside async context is a SyntaxError
+- *(lumen)* for await…of (async iteration)
+- *(lumen)* async generators (promise-returning next, @@asyncIterator) + generator return/throw
+- *(lumen)* Promise.allKeyed + allSettledKeyed (await-dictionary proposal)
+- *(lumen)* Array.fromAsync (sync/async iterables + array-likes, awaiting elements)
+- *(lumen)* object-backed global Environment Record + async test support + print
+- *(lumen)* live module bindings (import_ref + live namespace reads)
+- *(lumen)* module early errors (duplicate exports/bindings, undeclared exports)
+- *(lumen)* module resolution error for missing named imports (SyntaxError)
+- *(lumen)* module runner integration + top-level await + import attributes
+- *(lumen)* ES modules — import/export parsing + linking/evaluation
+- *(lumen)* Annex B.3.3 block-function var-hoisting conflict skip
+- *(lumen)* TypedArray integer-index own-property semantics
+- *(lumen)* detached-ArrayBuffer semantics for TypedArrays
+- *(lumen)* AsyncDisposableStack (use/adopt/defer/disposeAsync/move + @@asyncDispose)
+- *(lumen)* DataView getFloat16/setFloat16
+- *(lumen)* Float16Array + Math.f16round
+- *(lumen)* Uint8Array setFromHex/setFromBase64 ({read, written})
+- *(lumen)* Uint8Array toHex/fromHex/toBase64/fromBase64 + Symbol.metadata
+- *(lumen)* Promise.try + RegExp.escape
+- *(lumen)* Map.prototype.getOrInsert/getOrInsertComputed
+- *(lumen)* Iterator.prototype.flatMap (flattens each mapped iterable)
+- *(lumen)* Set methods union/intersection/difference/symmetricDifference/isSubsetOf/isSupersetOf/isDisjointFrom
+- *(lumen)* Object.keys forwards to Proxy ownKeys+gopd (enumerable string keys)
+- *(lumen)* Proxy deleteProperty/setPrototypeOf/preventExtensions/isExtensible traps
+- *(lumen)* Proxy defineProperty trap (Object + Reflect)
+- *(lumen)* Proxy getOwnPropertyDescriptor trap (+ CompletePropertyDescriptor)
+- *(lumen)* Proxy getPrototypeOf/ownKeys traps + primitive Object.getPrototypeOf
+- *(lumen)* ergonomic brand checks (#field in obj)
+- *(lumen)* full optional-chaining short-circuit + optional call f?.()
+- *(lumen)* BigInt literal property names ({1n: x})
+- *(lumen)* tagged templates + String.raw
+- *(lumen)* octal/\8/\9 escapes are SyntaxErrors in template literals
+- *(lumen)* getter/setter arity early errors (get takes 0 params, set exactly 1 non-rest)
+- *(lumen)* reduce/indexOf skip holes + indexOf fromIndex + reduce empty/callback validation
+- *(lumen)* real array holes + hole-skipping in forEach/map/filter/some/every
+- *(lumen)* ArraySpeciesCreate for map/filter/slice + subclass exotic transfer
+- *(lumen)* Date toDateString/toTimeString/toUTCString/toLocale*, Promise.allSettled/any, AggregateError
+- *(lumen)* RegExp source/flags/global/... as prototype accessor getters
+- *(lumen)* RegExp.prototype @@match/@@replace/@@search/@@split/@@matchAll
+- *(lumen)* DisposableStack + Symbol.dispose/asyncDispose
+- *(lumen)* Iterator helpers (map/filter/take/drop/reduce/forEach/some/every/find/toArray) + Iterator.from
+- *(lumen)* iterator close in destructuring assignment + String.prototype[@@iterator]
+- *(lumen)* lazy for-of with iterator close (break/return/throw)
+- *(lumen)* iterator-close protocol for array destructuring (binding)
+- *(lumen)* %TypedArray% intrinsic + toLocaleString
+- *(lumen)* String.lastIndexOf/toLocaleLowerCase/toLocaleUpperCase + uncap read-only array iteration
+- *(lumen)* proper [[DefineOwnProperty]] — partial descriptors + invariants
+- *(lumen)* %ThrowTypeError% poison pills on Function.prototype.caller/arguments
+- *(lumen)* Date.prototype[@@toPrimitive]
+- *(lumen)* spec property-enumeration order (integer keys ascending first)
+- *(lumen)* detect lexical redeclaration (let/const/class/var conflicts)
+- *(lumen)* lexical/class declaration cannot be a single-statement body
+- *(lumen)* NamedEvaluation for destructuring defaults, default params, class fields
+- *(lumen)* Promise.prototype.then brand-checks the receiver
+- *(lumen)* broaden identifier chars — Other_ID_Start + combining marks/connectors in ID_Continue
+- *(lumen)* Annex B.3.3 block-scoped function hoisting (sloppy mode)
+- *(lumen)* CoverInitializedName — object destructuring defaults ({a=1}=obj)
+- *(lumen)* label validation — undefined break/continue label + duplicate label are SyntaxErrors
+- *(lumen)* legacy octal numbers + octal/\8/\9 string escapes (sloppy value, strict SyntaxError)
+- *(lumen)* duplicate parameter names are a SyntaxError (strict, or non-simple lists)
+- *(lumen)* RegExp named groups — .groups on match results, $<name> in replace, duplicate-name SyntaxError
+- *(lumen)* strict-mode early errors — binding/assigning/updating eval/arguments + strict reserved words
+- *(lumen)* NamedEvaluation — infer .name for anonymous functions/classes
+- *(lumen)* require 'new' for Map/Set/Weak*/Promise/ArrayBuffer/SharedArrayBuffer/TypedArray/DataView/Proxy; ?. before digit is conditional
+- *(lumen)* DataView BigInt64/BigUint64 accessors + Proxy.revocable
+- *(lumen)* Reflect.getOwnPropertyDescriptor + Annex-B __defineGetter__/__defineSetter__/__lookupGetter__/__lookupSetter__
+- *(lumen)* Symbol.prototype.description, TypedArray from/of, escape/unescape, localeCompare, toLocaleString
+- *(lumen)* TypedArray.prototype methods brand-check the receiver
+- *(lumen)* early errors — strict-mode delete of identifier, duplicate __proto__
+- *(lumen)* early errors — const without init, return/break/continue context
+- *(lumen)* ZWNJ/ZWJ in identifiers + hashbang comment
+- *(lumen)* class static initialization blocks (static { ... })
+- *(lumen)* generator/async/async-generator methods in object literals
+- *(lumen)* destructuring targets in for-in/of (for([a,b] of x), for({a} of x))
+- *(lumen)* destructuring assignment ([a,b]=x, ({a,b}=x), rest/defaults/nested/member targets)
+- *(lumen)* Map.groupBy
+- *(lumen)* Object.hasOwn, Number.parseInt/parseFloat, String isWellFormed/toWellFormed, WeakRef, FinalizationRegistry
+- *(lumen)* resizable ArrayBuffer (maxByteLength/resizable/resize/transfer)
+- *(lumen)* Array toReversed/toSorted/toSpliced/with, Object.groupBy, Promise.withResolvers
+- *(lumen)* RegExp d/v flags, hasIndices/unicodeSets, duplicate-flag + u/v validation, canonical flag order
+- *(lumen)* Atomics over integer TypedArrays
+- *(lumen)* ToString-then-parse non-object Temporal inputs (null -> RangeError)
+- *(lumen)* strict PlainMonthDay string parsing
+- *(lumen)* reject negative-zero extended year in Temporal ISO strings
+- *(lumen)* Temporal roundingIncrement validation + PlainDateTime.from time constrain
+- *(lumen)* Temporal options must be an object (TypeError otherwise)
+- *(lumen)* strict Temporal ISO parsing + validation
+- *(lumen)* DST-aware ZonedDateTime.hoursInDay (23/24/25)
+- *(lumen)* Temporal named time zones (fixed offsets + DST rules)
+- *(lumen)* PlainDateTime until/since with calendar largestUnit (diff_datetime)
+- *(lumen)* Temporal relativeTo for Duration round/total/compare
+- *(lumen)* Temporal toJSON (Instant/ZonedDateTime) + PlainDate.toPlainDateTime(time)
+- *(lumen)* ZonedDateTime.from/compare + Object.getOwnPropertyDescriptors
+- *(lumen)* Temporal from() overflow:constrain default + toLocaleString
+- *(lumen)* Temporal toString options (fractionalSecondDigits/smallestUnit/calendarName)
+- *(lumen)* more ZonedDateTime getters/methods
+- *(lumen)* Temporal roundingMode validation + plural unit names
+- *(lumen)* Temporal conversions (toZonedDateTime/withPlainTime/withPlainDate/withCalendar)
+- *(lumen)* Temporal Duration.round/compare, monthCode, robust ISO parsing
+- *(lumen)* correct Object.prototype.toString (Symbol.toStringTag + builtin tags)
+- *(lumen)* ZonedDateTime add/subtract/with/until/since/round
+- *(lumen)* Temporal round (Time/DateTime/Instant) + Duration.total
+- *(lumen)* Temporal add/subtract/with for Time/DateTime/YearMonth/Instant
+- *(lumen)* Temporal.ZonedDateTime (UTC + fixed offsets)
+- *(lumen)* Temporal until/since for Date/Time/DateTime/Instant
+- *(lumen)* Temporal (ISO calendar) — PlainDate/Time/DateTime/YearMonth/MonthDay/Duration/Instant
+- *(lumen)* $262 host object + Boolean brand check
+- *(lumen)* primitive wrapper objects + String.fromCodePoint
+- *(lumen)* with statement (sloppy-mode object scope)
+- *(lumen)* BigInt64Array + BigUint64Array typed arrays
+- *(lumen)* Unicode escapes in identifiers (\u escapes)
+- *(lumen)* refcount-based cycle-collecting GC
+- *(lumen)* generators + async/await (eager) + runner allocation guard
+- *(lumen)* Proxy + Promise (microtask queue)
+- *(lumen)* BigInt (i128-backed)
+- *(lumen)* from-scratch RegExp engine + String regex methods
+- *(lumen)* DataView, SharedArrayBuffer, URI fns, Iterator, Math/Number extras
+- *(lumen)* ArrayBuffer + TypedArrays
+- *(lumen)* Date (UTC)
+- *(lumen)* JSON, Reflect, Map/Set/WeakMap/WeakSet
+- *(lumen)* array/object/string method coverage + iterator protocol
+- *(lumen)* Function constructor, template ${} substitutions, eval, Symbol
+- *(js)* from-scratch JS engine (lumen) + V8/lumen backend switch + test262 loop
+
+### Fixed
+
+- *(lumen)* sloppy-mode functions box a primitive this (ToThis/ToObject)
+- *(lumen)* Reflect.get/set throw TypeError on a non-object target
+- *(lumen)* String.prototype.replaceAll handles global RegExp (TypeError on non-global)
+- *(lumen)* Array.prototype.sort throws TypeError on a non-callable comparator
+- *(lumen)* reject \p{Any}/\p{ASCII}/\p{Assigned} — not valid ECMAScript property escapes
+- *(lumen)* reject FunctionDeclaration in single-statement positions (Annex B only allows plain fn in if/else/label sloppy)
+- *(lumen)* loops propagate body completion value (for/while/do-while/for-in/for-of)
+- *(lumen)* DataView constructor validates byteOffset/byteLength bounds (RangeError)
+- *(lumen)* Array concat/slice preserve holes + concat honors @@isConcatSpreadable & species
+- *(lumen)* generic Array.prototype methods ToObject-coerce primitive receivers
+- *(lumen)* ArrayBuffer constructor validates length (ToIndex: RangeError on negative/Infinity)
+- *(lumen)* Array.isArray unwraps Proxies
+- *(lumen)* Object.keys/values/entries/getOwnPropertyNames coerce primitives (ToObject)
+- *(lumen)* regex \p{} rejects spaces/invalid chars; class escape can't be a unicode range bound
+- *(lumen)* Array.prototype values/keys/entries/flat/concat RequireObjectCoercible(this)
+- *(lumen)* TypedArray methods re-check for a detached buffer after argument coercion
+- *(lumen)* Number.prototype.toPrecision (significant digits) + toFixed (>=1e21, -0)
+- *(lumen)* Number::toString matches the spec (exponential for >=1e21 and <1e-6)
+- *(lumen)* TypedArray length/byteLength/byteOffset/buffer/BYTES_PER_ELEMENT are not own properties
+- *(lumen)* private-name slots (#x) are not observable own properties
+- *(lumen)* a regex literal backslash sequence can't contain a line terminator
+- *(lumen)* Promise.all/race/allSettled/any reject (not throw) on a non-iterable arg
+- *(lumen)* String.split limit + zero-width edges; Number.toString radix range + fractions
+- *(lumen)* [NoIn] for-head grammar + member-expression for-in/of targets
+- *(lumen)* array methods ToLength the length property (coerce string/object lengths)
+- *(lumen)* allow subclassing abstract Iterator/%TypedArray% (throw only on direct new)
+- *(lumen)* Reflect.construct validates target + newTarget are constructors
+- *(lumen)* Temporal from() coerces non-object primitives via ToString+parse (RangeError)
+- *(lumen)* Temporal round()/total() accept a string smallestUnit/unit shorthand
+- *(lumen)* TypedArray map/filter/slice/toReversed/toSorted/with return a TypedArray
+- *(lumen)* Map/Set clear/values/keys/entries brand-check + defineProperties uses enumerable keys
+- *(lumen)* Number/String/Boolean.prototype wrapper exotics + RegExp pattern validation
+- *(lumen)* mutating a frozen/sealed array throws (length non-writable, non-extensible)
+- *(lumen)* Object.freeze/seal panic on populated objects + DataView ToIndex validation
+- *(lumen)* Array.from — mapFn validation, thisArg, constructor receiver
+- *(lumen)* array index < 2^32-1 updates length; add @@species to Array/Map/Set/Promise/RegExp
+- *(lumen)* native non-constructors reject 'new' (methods, global fns, Math)
+- *(lumen)* honor @@toPrimitive + coerce-before-BigInt-check in binary ops
+- *(lumen)* TDZ for top-level/function-body lexicals + typeof in TDZ throws
+- *(lumen)* super() to a native ctor sets constructing + transfers internal slots
+- *(lumen)* sign-correct Temporal rounding modes
+- *(lumen)* Map/Set methods brand-check the receiver
+- *(lumen)* Date.prototype methods brand-check the receiver (thisTimeValue)
+- *(lumen)* RequireObjectCoercible / thisNumberValue brand checks
+- *(lumen)* hoist var/function decls in non-generator functions
+
+### Other
+
+- *(lumen)* rustfmt the crate to satisfy the CI fmt gate
+- *(lumen)* clippy tidies in merged Temporal code
+- *(lumen)* remove leaked probe scaffold
+- *(lumen)* drop now-unused Any/ASCII/Assigned range tables
+- *(lumen)* collapse FuncDecl guard into match arm
+- *(lumen)* drop needless mut on loop-completion keep closure
+- *(lumen)* drop now-unused Matcher.re field + tidy modifier guard
+- Revert "fix(lumen): TypedArray methods re-check for a detached buffer after argument coercion"
+- Revert "feat(lumen): $262.createRealm — fresh realm with cross-realm-capable evalScript"
+- *(lumen)* collapse if-let into match arms in private-name walk
+- *(lumen)* use is_ok() for property-range binary search
+- *(lumen)* iterative single-char repeats + batch array truncation
+- *(lumen)* MemberKind is Copy — drop redundant clones
+- *(lumen)* Temporal from() ToString-coercion (net-negative, restore TypeError)
+- *(lumen)* clippy clean (range contains, checked_add)
+- Revert "feat(lumen): ToString-then-parse non-object Temporal inputs (null -> RangeError)"
+- *(runner)* tune timeout/chunk/yield caps for the generator-era suite
